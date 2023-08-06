@@ -16,7 +16,7 @@ public class ChatController {
     @MessageMapping("/chat.sendMessage")
     @SendTo("/topic/public")
     public ChatMessagePo sendMessage(@Payload ChatMessageVo ChatMessageVo) {
-        ChatMessagePo ChatMessagePo =null;
+        ChatMessagePo ChatMessagePo = new ChatMessagePo();
         BeanUtils.copyProperties(ChatMessageVo, ChatMessagePo);
         return ChatMessagePo;
     }
@@ -26,7 +26,7 @@ public class ChatController {
     public ChatMessagePo addUser(@Payload ChatMessageVo ChatMessageVo,SimpMessageHeaderAccessor headerAccessor) {
         // Add username in web socket session
         headerAccessor.getSessionAttributes().put("username", ChatMessageVo.getSender());
-        ChatMessagePo ChatMessagePo =null;
+        ChatMessagePo ChatMessagePo = new ChatMessagePo();
         BeanUtils.copyProperties(ChatMessageVo, ChatMessagePo);
         return ChatMessagePo;
     }
